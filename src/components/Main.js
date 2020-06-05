@@ -1,6 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import { Modal, ModalHeader, ModalBody, FormGroup, Label, NavbarBrand } from 'reactstrap';
-import  photos  from "../photos";
+/* import  photos  from "../photos"; */
+
+
+
+
+
+
 
 
 
@@ -20,7 +26,8 @@ const initialState = {
 class Main extends React.Component {
   constructor() {
     super();
-    this.state = {  
+    this.state = { 
+      photos:[],
       currentImage: 0,
       modalIsOpen: false,
       currentImagebase64: null,
@@ -28,11 +35,24 @@ class Main extends React.Component {
     };
   }
 
+ componentDidMount() {
+  fetch("https://api.imgflip.com/get_memes")
+  .then(response => response.json())  
+  .then(response => {
+    const data = response.data.memes
+    console.log(data)
+    this.setState({photos:data})
+    
+  })
+} 
+
+
+
 
   
  
   openImage = (index) => {
-    const image = photos[index];
+    const image = this.state.photos[index];
     const base_image = new Image();
     base_image.src = image.src;
     const base64 = this.getBase64Image(base_image);
@@ -91,9 +111,9 @@ class Main extends React.Component {
   } 
 
   render() {
-    const image = photos[this.state.currentImage];
+    const image = this.state.photos[this.state.currentImage];
     const base_image = new Image();
-    base_image.src = image.src;
+    base_image.src = image.url;
     var wrh = base_image.width / base_image.height;
     var newWidth = 400;
     var newHeight = newWidth / wrh;
@@ -117,8 +137,8 @@ class Main extends React.Component {
         
           </div>
           <div className="row">
-            {photos.map((image, index) => (
-              <div className="col-md-3" key={image.src}>
+            {this.state.photos.map((image, index) => (
+              <div className="col-md-3" key={this.state.photos.id}>
                 <span className="topText">Top text</span>
                 <img
                   style={{
@@ -127,7 +147,7 @@ class Main extends React.Component {
                     height: "100%"
                   }}
                   alt={index}
-                  src={image.src}
+                  src={this.state.photos.url}
                   onClick={() => this.openImage(index)}
                   role="presentation"
                 />
