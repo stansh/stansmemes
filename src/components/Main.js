@@ -125,7 +125,7 @@ class Main extends React.Component {
                     cursor: "pointer",
                   }}
                   alt={index}
-                  src={meme.src}
+                  src={'stansmemes' + meme.src}
                   onClick={() => this.openImage(index)}
                   role="presentation"
                 />
