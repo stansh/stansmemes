@@ -1,25 +1,7 @@
-import React, {useState, useEffect} from 'react';
-import { Modal, ModalHeader, ModalBody, FormGroup, Label, NavbarBrand } from 'reactstrap';
-/* import  photos  from "../photos"; */
+import React from 'react';
+import { Modal, ModalHeader, ModalBody, FormGroup, Label} from 'reactstrap';
+import  templates  from "../templates";
 
-
-
-
-
-
-
-
-
-const initialState = {
-  toptext: "",
-  bottomtext: "",
-  isTopDragging: false,
-  isBottomDragging: false,
-  topY: "10%",
-  topX: "50%",
-  bottomX: "50%",
-  bottomY: "90%"
-}
 
 
 
@@ -27,32 +9,22 @@ class Main extends React.Component {
   constructor() {
     super();
     this.state = { 
-      photos:[],
       currentImage: 0,
       modalIsOpen: false,
       currentImagebase64: null,
-      ...initialState
+      toptext: "",
+      bottomtext: "",
+      topY: "10%",
+      topX: "50%",
+      bottomX: "50%",
+      bottomY: "90%"
     };
   }
 
- componentDidMount() {
-  fetch("https://api.imgflip.com/get_memes")
-  .then(response => response.json())  
-  .then(response => {
-    const data = response.data.memes
-    console.log(data)
-    this.setState({photos:data})
-    
-  })
-} 
 
-
-
-
-  
  
   openImage = (index) => {
-    const image = this.state.photos[index];
+    const image = templates[index];
     const base_image = new Image();
     base_image.src = image.src;
     const base64 = this.getBase64Image(base_image);
@@ -60,7 +32,12 @@ class Main extends React.Component {
       currentImage: index,
       modalIsOpen: !prevState.modalIsOpen,
       currentImagebase64: base64,
-      ...initialState
+      toptext: "",
+      bottomtext: "",
+      topY: "10%",
+      topX: "50%",
+      bottomX: "50%",
+      bottomY: "90%"
     }));
   }
 
@@ -111,9 +88,9 @@ class Main extends React.Component {
   } 
 
   render() {
-    const image = this.state.photos[this.state.currentImage];
+    const image = templates[this.state.currentImage];
     const base_image = new Image();
-    base_image.src = image.url;
+    base_image.src = image.src;
     var wrh = base_image.width / base_image.height;
     var newWidth = 400;
     var newHeight = newWidth / wrh;
@@ -127,7 +104,9 @@ class Main extends React.Component {
     }
 
     return (
-      <div>
+      
+    
+       <div>
         <div className="container">
           <div className="jumbotron jumbotron-fluid sticky-top">
             
@@ -137,17 +116,16 @@ class Main extends React.Component {
         
           </div>
           <div className="row">
-            {this.state.photos.map((image, index) => (
-              <div className="col-md-3" key={this.state.photos.id}>
+            {templates.map((meme,index) => (
+              <div className="col-md-3" key={meme.src}>
                 <span className="topText">Top text</span>
                 <img
                   style={{
                     width: "100%",
                     cursor: "pointer",
-                    height: "100%"
                   }}
                   alt={index}
-                  src={this.state.photos.url}
+                  src={meme.src}
                   onClick={() => this.openImage(index)}
                   role="presentation"
                 />
@@ -156,6 +134,9 @@ class Main extends React.Component {
             ))}
           </div>
         </div>
+
+ {/* modal */}
+        
          <Modal  isOpen={this.state.modalIsOpen}>
           <ModalHeader toggle={this.toggle}>Make-a-Meme</ModalHeader>
           <ModalBody>
@@ -205,7 +186,7 @@ class Main extends React.Component {
             </div>
           </ModalBody>
         </Modal> 
-      </div>
+      </div> 
     )
   }
 }

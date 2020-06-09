@@ -1,4 +1,4 @@
-/* export const photos = [
+ const templates = [
     { src: '/images/cat.jpg' },
     { src: '/images/confused-guy.jpg' },
     { src: '/images/laugh.jpg' },
@@ -10,26 +10,14 @@
     { src: '/images/trump.jpg' },
     { src: '/images/face.jpg' },
     { src: '/images/pg.jpg' },
-    { src: '/images/dc5.png' }
+    { src: '/images/dc5.png' },
+    { src: '/images/kh.jpg' },
+    { src: '/images/professional.jpg' },
+    { src: '/images/simpsons.jpg' },
+    { src: '/images/85.jpg' },
+    { src: '/images/images.jpg' }
     
-  ]; */
+  ];
  
 
-  
-
-import React, { useState, useEffect } from "react";
-
-function Fetch() {
-  const [templates, setTemplates] = useState([]);
-
-  useEffect(() => {
-    fetch("https://api.imgflip.com/get_memes").then(x =>
-      x.json().then(response => setTemplates(response.data.memes))
-    );
-  }, []);
-
-return templates;
-
-}
-
-
+  export default templates;
