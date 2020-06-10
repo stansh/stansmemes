@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/stansmemes/precache-manifest.3ae4ae1e31be514f212f76e742ddc935.js"
+  "/stansmemes/precache-manifest.b1b623b65ecba200ce1b72202769aca8.js"
 );
 
 self.addEventListener('message', (event) => {

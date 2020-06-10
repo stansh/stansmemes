@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "95cf4abf8783b1fd088f181958006000",
+    "revision": "568ff8fc70a57c70e6af0d9927c8aa6a",
     "url": "/stansmemes/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/stansmemes/static/css/2.af3c1da9.chunk.css"
   },
   {
-    "revision": "0a84113ea09082d3fb04",
+    "revision": "08c7b2902555178a1d4d",
     "url": "/stansmemes/static/css/main.6d3067ca.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/stansmemes/static/js/2.c2895dbf.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "0a84113ea09082d3fb04",
-    "url": "/stansmemes/static/js/main.1d5c29ed.chunk.js"
+    "revision": "08c7b2902555178a1d4d",
+    "url": "/stansmemes/static/js/main.24678474.chunk.js"
   },
   {
     "revision": "a7ed28ed71c720e18f98",
